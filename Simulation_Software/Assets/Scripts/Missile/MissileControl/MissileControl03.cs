@@ -5,7 +5,7 @@ using UnityEngine;
 public class MissileControl03 : MonoBehaviour
 {
     public float timeToTarget = 5f; // 固定的飞行时间
-    public GameObject explosionEffect; // 爆炸效果的预制体
+    public GameObject explosionEffect; // 爆炸效果的预制体    
 
     private Vector3 targetPosition; // 目标位置
     private Quaternion targetRotation; // 目标角度
