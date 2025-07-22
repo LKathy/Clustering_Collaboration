@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - Destroyer1Camera
+  - Target
   layers:
   - Default
   - TransparentFX
