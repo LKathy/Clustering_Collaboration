@@ -44,7 +44,7 @@ public class UnityTcpClientWithUI02 : MonoBehaviour
 
         // 初始状态：未连接
         UpdateUIState();
-        SetResponseTextAndFade("等待连接...", 0); // 初始显示，不消失
+        SetResponseTextAndFade("请点击按钮 “开启Matlab通信” 开启MATLAB通信！", 0); // 初始显示，不消失
     }
 
     // 连接到MATLAB服务器
@@ -52,7 +52,7 @@ public class UnityTcpClientWithUI02 : MonoBehaviour
     {
         if (isConnected)
         {
-            SetResponseTextAndFade("已连接到服务器，无需重复连接。", 3f);
+            SetResponseTextAndFade("已连接到服务器，无需重复连接。", 2f);
             return;
         }
 
@@ -68,8 +68,9 @@ public class UnityTcpClientWithUI02 : MonoBehaviour
             writer = new StreamWriter(stream, new UTF8Encoding(false)) { AutoFlush = true };
 
             isConnected = true;
-            SetResponseTextAndFade("已连接到MATLAB服务器！", 3f); // 连接成功后显示3秒
+            SetResponseTextAndFade("已连接到MATLAB服务器！", 2f); // 连接成功后显示3秒
             Debug.Log("已连接到MATLAB服务器！");
+            SetResponseTextAndFade("请输入导弹数量并点击“确认”按钮初始化导弹并生成时空同步吸引域！", 0); // 连接成功后显示3秒
         }
         catch (SocketException e)
         {
@@ -133,9 +134,13 @@ public class UnityTcpClientWithUI02 : MonoBehaviour
         {
             try
             {
+                
                 writer.WriteLine(numberString);
                 SetResponseTextAndFade("正在发送: " + numberString + "...", 3f);
                 Debug.Log("发送到MATLAB: " + numberString);
+
+                //SetResponseTextAndFade("已确认导弹数量为：" + numberString + "...完成初始化", 2f);
+                //SetResponseTextAndFade("请点击按钮" + numberString, 2f);
 
                 string receivedData = reader.ReadLine();
                 SetResponseTextAndFade(receivedData, 3f);
@@ -158,7 +163,7 @@ public class UnityTcpClientWithUI02 : MonoBehaviour
         }
         else
         {
-            SetResponseTextAndFade("请输入一个有效的数字！", 3f);
+            SetResponseTextAndFade("请输入一个有效的数字！", 2f);
             Debug.LogWarning("无效输入: 不是数字。");
         }
     }
