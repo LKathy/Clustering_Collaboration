@@ -50,7 +50,7 @@ public class MatlabRunner02 : MonoBehaviour
         {
             matlabProcess.Start();
             UnityEngine.Debug.Log("MATLAB启动成功！");
-            ShowLogMessage("MATLAB启动成功！"); // 【修改】显示到UI
+            ShowLogMessage("MATLAB正在启动！请等待该条提示消失后点击“开启Unity通信”"); // 【修改】显示到UI
         }
         catch (System.Exception e)
         {
@@ -70,12 +70,12 @@ public class MatlabRunner02 : MonoBehaviour
             // 停止之前的协程（如果有的话）
             StopAllCoroutines();
 
-            // 启动2秒后隐藏的协程
-            StartCoroutine(HideLogAfterDelay(2f));
+            // 启动7秒后隐藏的协程
+            StartCoroutine(HideLogAfterDelay(8f));
         }
     }
 
-    // 【新增】2秒后隐藏Log的协程
+    // 【新增】n秒后隐藏Log的协程
     IEnumerator HideLogAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);

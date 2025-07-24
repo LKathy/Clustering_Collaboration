@@ -44,7 +44,7 @@ public class UnityTcpClientWithUI02 : MonoBehaviour
 
         // 初始状态：未连接
         UpdateUIState();
-        SetResponseTextAndFade("等待连接...", 0); // 初始显示，不消失
+        //SetResponseTextAndFade("等待连接...", 0); // 初始显示，不消失
     }
 
     // 连接到MATLAB服务器
@@ -68,7 +68,7 @@ public class UnityTcpClientWithUI02 : MonoBehaviour
             writer = new StreamWriter(stream, new UTF8Encoding(false)) { AutoFlush = true };
 
             isConnected = true;
-            SetResponseTextAndFade("已连接到MATLAB服务器！", 3f); // 连接成功后显示3秒
+            SetResponseTextAndFade("已连接到MATLAB服务器！请输入导弹数量！", 3f); // 连接成功后显示3秒
             Debug.Log("已连接到MATLAB服务器！");
         }
         catch (SocketException e)
@@ -140,6 +140,7 @@ public class UnityTcpClientWithUI02 : MonoBehaviour
                 string receivedData = reader.ReadLine();
                 SetResponseTextAndFade(receivedData, 3f);
                 Debug.Log("从MATLAB接收到: " + receivedData);
+                SetResponseTextAndFade("MATLAB已接收到导弹数量为30，请点击“初始化导弹”完成导弹初始化", 2f);
             }
             catch (IOException e)
             {
